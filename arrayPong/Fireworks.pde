@@ -45,24 +45,21 @@ class Fireworks extends Ball {
 
   //methods
   void draw() {
-    for (int i=0; i < fx.length; i++) {
-      fill(fc[i]);
-      ellipse(fx[i], fy[i], fw[i], fw[i]);
-      fill(defaultCol);
-    }
-    //ball();
-
-    move();
+      for (int i=0; i < fx.length; i++) {
+        fill(fc[i]);
+        ellipse(fx[i], fy[i], fw[i], fw[i]);
+        fill(defaultCol);
+      }
+      move();
   }
 
   void move() {
-    bounce();
-
     for (int i=0; i < fx.length; i++) {
       fySpeed[i] += gravity;
       fx[i] += fxSpeed[i] * xSpeedChange;
       fy[i] += fySpeed[i] * ySpeedChange;
     }
+    bounce();
   }
 
   void bounce() {

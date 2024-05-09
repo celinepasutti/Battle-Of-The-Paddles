@@ -3,7 +3,6 @@ class Paddle extends Rectangle {
   Boolean up, down;
   float speed, speedStart;
   float hStart;
-  float tablex, tabley, tablew, tableh;
   float bally;
   float buffer;
   Boolean adv3 = false;
@@ -86,24 +85,12 @@ class Paddle extends Rectangle {
     }
   }
 
-  void reset() {
-    this.h = hStart;
-    this.speed = speedStart;
-  }
-
   void decrease() {
     if (adv3 == true) {
       this.h *= 0.9;
       this.speed *= 0.75;
       adv3 = false;
     }
-  }
-
-  void tableUpdate(float tablexParameter, float tableyParameter, float tablewParameter, float tablehParameter) {
-    tablex = tablexParameter;
-    tabley = tableyParameter;
-    tablew = tablewParameter;
-    tableh = tablehParameter;
   }
 
   void ballUpdate(float ballyParameter) {
@@ -150,6 +137,11 @@ class Paddle extends Rectangle {
     if (key == CODED && keyCode == DOWN) {
       down = false;
     }
+  }
+  
+  void reset() {
+    this.h = hStart;
+    this.speed = speedStart;
   }
 }
 

@@ -1,8 +1,6 @@
 class Ball extends Circle {
   //class vars
-  PFont font = createFont("MS UI Gothic", 55);
   float xSpeed, ySpeed, xSpeedChange, ySpeedChange;
-  float tablex, tabley, tablew, tableh;
   float paddlex, paddley, paddlew, paddleh;
   Boolean rSide = false;
   Boolean scoreCondition = false;
@@ -42,6 +40,7 @@ class Ball extends Circle {
       this.y = yStart;
       fireworks.draw();
     }
+
     paddleUpdate(shapes.get(3).x, shapes.get(4).x, shapes.get(3).y, shapes.get(4).y, shapes.get(3).w, shapes.get(4).w, shapes.get(3).h, shapes.get(4).h);
 
     //onePlayerPaddle();
@@ -84,9 +83,8 @@ class Ball extends Circle {
       this.ySpeed *= -1;
     }
     if (this.x < tablex + (w/2) || this.x > tablew - (w/2)) {
-      //this.xSpeed *=  -1;
-      scoreCondition = true;
       netExplosion(x, y, 0.5);
+      scoreCondition = true;
     }
   }
 
@@ -154,13 +152,6 @@ class Ball extends Circle {
    }
    }*/
 
-  void tableUpdate(float tablexParameter, float tableyParameter, float tablewParameter, float tablehParameter) {
-    tablex = tablexParameter;
-    tabley = tableyParameter;
-    tablew = tablewParameter;
-    tableh = tablehParameter;
-  }
-
   void paddleUpdate(float rpaddlexParameter, float lpaddlexParameter, float rpaddleyParameter, float lpaddleyParameter, float rpaddlewParameter, float lpaddlewParameter, float rpaddlehParameter, float lpaddlehParameter) {
     if (this.rSide == true) {
       paddlex = rpaddlexParameter;
@@ -182,6 +173,10 @@ class Ball extends Circle {
     this.xSpeed *= xSpeedChange();
     this.ySpeed *= ySpeedChange();
   }
+  
+  void reset() {
+    
+  }
 
   /*void endPauseKP() {
    if (paused == true && key == ' ') {
@@ -198,14 +193,6 @@ class Ball extends Circle {
    fireworks.pauseUpdate();
    }
    }*/
-
-  void createText (String text, float x, float y, float w, float h) {
-    fill(white);
-    textAlign (CENTER, CENTER);
-    textFont(font, 40);
-    text(text, x, y, w, h);
-    fill(defaultCol);
-  }
 }
 //RESP:::
 //NETEXPLOSION

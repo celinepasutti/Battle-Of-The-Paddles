@@ -70,7 +70,7 @@ class Fireworks extends Ball {
       if (fx[i] < tablex + (fw[i]/2) || fx[i] > tablew - (fw[i]/2)) {
         fxSpeed[i] *=  -1;
       }
-      if (fy[i] > (tabley + tableh + fw[i])) {
+      if (fy[i] > (tabley + tableh + fw[i]/2)) {
         fy[i] = appHeight*-1;
       }
     }
@@ -83,5 +83,9 @@ class Fireworks extends Ball {
         fy[i] = appHeight*-1;
       }
     }
+  }
+  
+  void reset() {
+    
   }
 }

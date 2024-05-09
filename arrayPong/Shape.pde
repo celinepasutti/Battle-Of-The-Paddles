@@ -1,6 +1,7 @@
 abstract class Shape {
   //class vars
   float x, y, w, h;
+  float tablex, tabley, tablew, tableh;
   color col, defaultCol;
   float xStart, yStart;
 
@@ -19,7 +20,14 @@ abstract class Shape {
 
   //methods
   abstract void draw();
+  abstract void reset();
 
+  void tableUpdate(float tablexParameter, float tableyParameter, float tablewParameter, float tablehParameter) {
+    tablex = tablexParameter;
+    tabley = tableyParameter;
+    tablew = tablewParameter;
+    tableh = tablehParameter;
+  }
 
   /* color nightModeCol() { ---------- potential nightMode...
    color nm = 0;

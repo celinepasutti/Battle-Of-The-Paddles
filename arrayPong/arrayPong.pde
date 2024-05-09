@@ -16,7 +16,7 @@ ArrayList<Shape> shapes = new ArrayList<Shape>();
  6 = rScore
  7 = lScore
  8 = fireworks
- 9 = oneP 
+ 9 = oneP
  10 = twoP
  */
 
@@ -47,9 +47,9 @@ void setup() {
     Paddle rPaddle = new Paddle(white, myTable.w*1/30, (myTable.y + (myTable.h*1/3)), myBall.w*1/2, myTable.h*1/4);
     Paddle lPaddle = new Paddle(white, (myTable.w*29/30 - myBall.w*1/2), (myTable.y + (myTable.h*1/3)), myBall.w*1/2, myTable.h*1/4);
 
-    
+
     //yourBall.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
-    
+
     rPaddle.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
     lPaddle.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
 
@@ -79,15 +79,31 @@ void draw() {
      shapes.get(i).draw();
      }*/
 
-    for ( Shape s : shapes) {
+    for (Shape s : shapes) {
       s.draw();
     }
-    
+
     //shapes.get(5).paddleUpdate(shapes.get(3).x, shapes.get(4).x, shapes.get(3).y, shapes.get(4).y, shapes.get(3).w, shapes.get(4).w, shapes.get(3).h, shapes.get(4).h);
   }
 }
 
 void mousePressed () {
+  if (correctlyOriented == true) {
+    if (mouseX > shapes.get(0).x && mouseX < (shapes.get(0).x + shapes.get(0).w) && mouseY > shapes.get(0).y && mouseY < (shapes.get(0).y + shapes.get(0).h)) {
+      println("ball moved");
+      shapes.get(5).x = mouseX;
+      shapes.get(5).y = mouseY;
+    }
+    
+    if (mouseX >= shapes.get(1).x && mouseX <= (shapes.get(1).x + shapes.get(1).w) && mouseY >= shapes.get(1).y && mouseY <= (shapes.get(1).y + shapes.get(1).h)) {
+      println("terminated");
+      exit();
+    }
+  }
+}
+
+
+void keyReleased() {
 }
 
 void keyPressed() {

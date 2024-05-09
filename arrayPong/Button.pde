@@ -1,8 +1,5 @@
 class Button extends Rectangle {
   //class vars
-  PFont font = createFont("MS UI Gothic", 55);
-  int textSize;
-  String text;
   color hoverOver;
 
   Button(String textParameter, int textSizeParameter, color col, float x, float y, float w, float h) {
@@ -10,6 +7,7 @@ class Button extends Rectangle {
     this.text = textParameter;
     this.textSize = textSizeParameter;
     this.hoverOver = col;
+    font = createFont("MS UI Gothic", 55);
   }
 
   //methods
@@ -23,16 +21,11 @@ class Button extends Rectangle {
     rect(x, y, w, h);
     fill(defaultCol);
     fill(white);
-    createText(this.x, this.y, this.w, this.h);
+    createText(this.text, this.x, this.y, this.w, this.h);
     fill(defaultCol);
   }
-
-
-  void createText (float x, float y, float w, float h) {
-    fill(white);
-    textAlign (CENTER, CENTER);
-    textFont(font, textSize);
-    text(text, x, y, w, h);
-    fill(defaultCol);
+  
+  void reset() {
+    
   }
 }

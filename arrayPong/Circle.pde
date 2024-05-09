@@ -6,6 +6,7 @@ abstract class Circle extends Shape {
 
   //methods
   abstract void draw();
+  abstract void reset();
 
   void ball() {
     fill (col);

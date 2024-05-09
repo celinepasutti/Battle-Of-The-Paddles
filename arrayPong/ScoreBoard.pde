@@ -42,8 +42,13 @@ class ScoreBoard extends Rectangle {
     text(text, x, y, w, h);
     fill(defaultCol);
   }
-  
+
   void reset() {
-    
+  }
+
+  void keyPressed() {
+  }
+
+  void keyReleased() {
   }
 }

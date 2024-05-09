@@ -24,8 +24,13 @@ class Button extends Rectangle {
     createText(this.text, this.x, this.y, this.w, this.h);
     fill(defaultCol);
   }
-  
+
   void reset() {
-    
+  }
+
+  void keyPressed() {
+  }
+
+  void keyReleased() {
   }
 }

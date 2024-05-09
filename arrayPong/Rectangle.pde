@@ -10,6 +10,10 @@ abstract class Rectangle extends Shape {
 
   //methods
   abstract void draw();
+  
+  abstract void keyPressed();
+  abstract void keyReleased();
+  
   abstract void reset();
 
   void rectangle() {

@@ -1,6 +1,6 @@
 Boolean paused = false;
 Boolean onePlayer = false;
-Boolean twoPlayer = false;
+Boolean twoPlayer = true;
 
 color black=#000000, white=#FFFFFF, red=#951111, Lgreen=#27C149, gray=#898989;
 ArrayList<Shape> shapes = new ArrayList<Shape>();
@@ -94,7 +94,7 @@ void mousePressed () {
       shapes.get(5).x = mouseX;
       shapes.get(5).y = mouseY;
     }
-    
+
     if (mouseX >= shapes.get(1).x && mouseX <= (shapes.get(1).x + shapes.get(1).w) && mouseY >= shapes.get(1).y && mouseY <= (shapes.get(1).y + shapes.get(1).h)) {
       println("terminated");
       exit();
@@ -104,10 +104,21 @@ void mousePressed () {
 
 
 void keyReleased() {
+  if (correctlyOriented == true) {
+    for (Shape s : shapes) {
+      s.keyReleased();
+    }
+  }
 }
 
 void keyPressed() {
   if (key == ESC) {
     println("terminated");
+  }
+
+  if (correctlyOriented == true) {
+    for (Shape s : shapes) {
+      s.keyPressed();
+    }
   }
 }

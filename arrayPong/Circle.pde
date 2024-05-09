@@ -6,8 +6,12 @@ abstract class Circle extends Shape {
 
   //methods
   abstract void draw();
+  
+  abstract void keyPressed();
+  abstract void keyReleased();
+  
   abstract void reset();
-
+  
   void ball() {
     fill (col);
     ellipse(x, y, w, h);

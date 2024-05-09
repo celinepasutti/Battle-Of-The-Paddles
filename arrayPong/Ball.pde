@@ -2,7 +2,7 @@ class Ball extends Circle {
   //class vars
   float xSpeed, ySpeed, xSpeedChange, ySpeedChange;
   float paddlex, paddley, paddlew, paddleh;
-  Boolean rSide = false;
+  Boolean right = false;
   Boolean scoreCondition = false;
   Fireworks fireworks;
 
@@ -53,14 +53,14 @@ class Ball extends Circle {
     this.y += ySpeed * ySpeedChange;
 
     if (this.x < (tablew*1/2)) {
-      this.rSide = true;
+      this.right = true;
     } else {
-      this.rSide = false;
+      this.right = false;
     }
   }
 
   void bounce() {
-    if (this.rSide == true) {
+    if (this.right == true) {
       if (this.x < (paddlex + paddlew + (w/2)) && y > paddley && y < (paddley + paddleh)) {
         if (this.x > paddlex - w) {
           this.x = (paddlex + paddlew + (w/2));
@@ -90,7 +90,7 @@ class Ball extends Circle {
 
   /*void onePlayerPaddle () {
    if (onePlayer == true) {
-   if (this.rSide == false) {
+   if (this.right == false) {
    if (this.x > tablew*3/4) {
    lPaddle.ballSnipe();
    } else {
@@ -106,7 +106,7 @@ class Ball extends Circle {
    
    void onlyChild() {
    if (onePlayer == false && twoPlayer == false) {
-   if (this.rSide == false) {
+   if (this.right == false) {
    rPaddle.newGame();
    if (this.x > tablew*3/4) {
    lPaddle.ballSnipe();
@@ -153,7 +153,7 @@ class Ball extends Circle {
    }*/
 
   void paddleUpdate(float rpaddlexParameter, float lpaddlexParameter, float rpaddleyParameter, float lpaddleyParameter, float rpaddlewParameter, float lpaddlewParameter, float rpaddlehParameter, float lpaddlehParameter) {
-    if (this.rSide == true) {
+    if (this.right == true) {
       paddlex = rpaddlexParameter;
       paddley = rpaddleyParameter;
       paddlew = rpaddlewParameter;
@@ -175,6 +175,14 @@ class Ball extends Circle {
   }
   
   void reset() {
+    
+  }
+  
+  void keyPressed() {
+    
+  }
+  
+  void keyReleased() {
     
   }
 

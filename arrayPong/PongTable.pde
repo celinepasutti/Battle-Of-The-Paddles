@@ -9,8 +9,13 @@ class PongTable extends Rectangle {
   void draw() {
     rectangle();
   }
-  
+
   void reset() {
-    
+  }
+
+  void keyPressed() {
+  }
+
+  void keyReleased() {
   }
 }

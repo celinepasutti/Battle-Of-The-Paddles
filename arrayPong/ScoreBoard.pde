@@ -1,6 +1,6 @@
 class ScoreBoard extends Rectangle {
   //class vars
-  int score = 0;
+  int score;
   int textSize;
 
   ScoreBoard(color col, float x, float y, float w, float h) {
@@ -8,31 +8,24 @@ class ScoreBoard extends Rectangle {
     this.text = str(this.score);
     textSize = int(appWidth*1/40);
     font = createFont("MS UI Gothic", 55);
+    this.score = 0;
   }
 
   //methods
   void draw() {
     rectangle();
     fill(white);
-    createText(this.x, this.y, this.w, this.h);
+    createText(this.text, this.x, this.y, this.w, this.h);
     fill(defaultCol);
 
 
 
-    if (shapes.get(5).scoreCondition == true) {
+    if (this.scoreCondition == true) {
       println("score!");
       this.score += 1;
       this.text = str(this.score);
-      
+      this.scoreCondition = false;
     }
-  }
-
-  void createText (float x, float y, float w, float h) {
-    fill(white);
-    textAlign (CENTER, CENTER);
-    textFont(font, textSize);
-    text(text, x, y, w, h);
-    fill(defaultCol);
   }
 
   void reset() {

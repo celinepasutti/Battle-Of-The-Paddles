@@ -61,6 +61,11 @@ class Ball extends Circle {
 
   void bounce() {
     if (this.right == false) {
+      if (this.x > tablew - (w/2)) {
+        netExplosion(x, y, 0.5);
+        scoreCondition = true;
+        shapes.get(6).scoreCondition = true;
+      }
       if (this.x > (paddlex - (w/2)) && this.y > paddley && this.y < (paddley + paddleh)) {
         if (this.x < paddlex + w) {
           this.x = (paddlex - (w/2));
@@ -70,6 +75,11 @@ class Ball extends Circle {
         }
       }
     } else {
+      if (this.x < tablex + (w/2)) {
+        netExplosion(x, y, 0.5);
+        scoreCondition = true;
+        shapes.get(7).scoreCondition = true;
+      }
       if (this.x < (paddlex + paddlew + (w/2)) && y > paddley && y < (paddley + paddleh)) {
         if (this.x > paddlex - w) {
           this.x = (paddlex + paddlew + (w/2));
@@ -81,10 +91,6 @@ class Ball extends Circle {
     }
     if (this.y < tabley + (w/2) || this.y > (tabley + tableh - (w/2))) {
       this.ySpeed *= -1;
-    }
-    if (this.x < tablex + (w/2) || this.x > tablew - (w/2)) {
-      netExplosion(x, y, 0.5);
-      scoreCondition = true;
     }
   }
 
@@ -173,17 +179,14 @@ class Ball extends Circle {
     this.xSpeed *= xSpeedChange();
     this.ySpeed *= ySpeedChange();
   }
-  
+
   void reset() {
-    
   }
-  
+
   void keyPressed() {
-    
   }
-  
+
   void keyReleased() {
-    
   }
 
   /*void endPauseKP() {

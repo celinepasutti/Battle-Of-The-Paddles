@@ -2,7 +2,6 @@ class ScoreBoard extends Rectangle {
   //class vars
   int score = 0;
   int textSize;
-  Boolean inNet = false;
 
   ScoreBoard(color col, float x, float y, float w, float h) {
     super(col, x, y, w, h);
@@ -18,21 +17,14 @@ class ScoreBoard extends Rectangle {
     createText(this.x, this.y, this.w, this.h);
     fill(defaultCol);
 
-    if (this.inNet == true) {
-      scoreUpdate();
-      this.inNet = false;
+
+
+    if (shapes.get(5).scoreCondition == true) {
+      println("score!");
+      this.score += 1;
+      this.text = str(this.score);
+      
     }
-  }
-
-  void scoreUpdate() {
-    println("score!");
-    this.score += 1;
-    this.text = str(this.score);
-  }
-
-  void scoreReset() {
-    this.score = 0;
-    this.text = str(this.score);
   }
 
   void createText (float x, float y, float w, float h) {
@@ -44,6 +36,8 @@ class ScoreBoard extends Rectangle {
   }
 
   void reset() {
+    this.score = 0;
+    this.text = str(this.score);
   }
 
   void keyPressed() {

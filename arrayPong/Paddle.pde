@@ -1,6 +1,6 @@
 class Paddle extends Rectangle {
   //class vars
-  Boolean up, down, right;
+  Boolean up, down;
   float speed, speedStart;
   float hStart;
   float bally;
@@ -29,11 +29,7 @@ class Paddle extends Rectangle {
       movePaddleDown();
     }
 
-    if (this.x < (tablew*1/2)) {
-      this.right = true;
-    } else {
-      this.right = false;
-    }
+    sideCheck();
     //decrease();
   }
 
@@ -103,7 +99,7 @@ class Paddle extends Rectangle {
   }
 
   void keyPressed() {
-    if (this.right == true ) {
+    if (this.right == false ) {
       if (onePlayer == true || twoPlayer == true ) { //WASD
         if (key == 'w' || key == 'W') {
           this.down = false;
@@ -130,7 +126,7 @@ class Paddle extends Rectangle {
 
 
   void keyReleased() {
-    if (this.right == true ) {
+    if (this.right == false ) {
       if (onePlayer == true || twoPlayer == true ) { //WASD
         if (key == 'w' || key == 'W') {
           this.down = false;

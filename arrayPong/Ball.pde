@@ -60,19 +60,19 @@ class Ball extends Circle {
   }
 
   void bounce() {
-    if (this.right == true) {
-      if (this.x < (paddlex + paddlew + (w/2)) && y > paddley && y < (paddley + paddleh)) {
-        if (this.x > paddlex - w) {
-          this.x = (paddlex + paddlew + (w/2));
+    if (this.right == false) {
+      if (this.x > (paddlex - (w/2)) && this.y > paddley && this.y < (paddley + paddleh)) {
+        if (this.x < paddlex + w) {
+          this.x = (paddlex - (w/2));
           this.xSpeed *= -1;
         } else {
           this.xSpeed *= -1;
         }
       }
     } else {
-      if (this.x > (paddlex - (w/2)) && this.y > paddley && this.y < (paddley + paddleh)) {
-        if (this.x < paddlex + w) {
-          this.x = (paddlex - (w/2));
+      if (this.x < (paddlex + paddlew + (w/2)) && y > paddley && y < (paddley + paddleh)) {
+        if (this.x > paddlex - w) {
+          this.x = (paddlex + paddlew + (w/2));
           this.xSpeed *= -1;
         } else {
           this.xSpeed *= -1;

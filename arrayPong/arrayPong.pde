@@ -33,11 +33,9 @@ void setup() {
 
     Button quit = new Button("x", int(appWidth*1/45), red, appWidth*17/20, appHeight*1/30, appWidth/10, appHeight/24);
     Button restart = new Button("NEW GAME", int(appWidth*1/60), Lgreen, appWidth*1/20, appHeight*1/30, appWidth/10, appHeight/24);
-    //Button oneP = new Button("ONE PLAYER", int(appWidth*1/40), myTable.col, appWidth*1/5, appHeight*3/5, appWidth*1/5, appHeight*1/5);
-    //Button twoP = new Button("TWO PLAYERS", int(appWidth*1/40), myTable.col, appWidth*3/5, appHeight*3/5, appWidth*1/5, appHeight*1/5);
 
-    //ScoreBoard rScore = new ScoreBoard(black, appWidth*6/20, appHeight*1/30, appWidth/10, appHeight/24);
-    //ScoreBoard lScore = new ScoreBoard(black, appWidth*12/20, appHeight*1/30, appWidth/10, appHeight/24);
+    ScoreBoard rScore = new ScoreBoard(black, appWidth*6/20, appHeight*1/30, appWidth/10, appHeight/24);
+    ScoreBoard lScore = new ScoreBoard(black, appWidth*12/20, appHeight*1/30, appWidth/10, appHeight/24);
 
 
     Ball myBall = new Ball(white, myTable.w*1/2, (myTable.y + myTable.h*1/2), myTable.w*1/35, myTable.w*1/35);
@@ -52,6 +50,9 @@ void setup() {
 
     rPaddle.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
     lPaddle.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
+    
+    rScore.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
+    lScore.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
 
 
     //Fireworks fireworks = new Fireworks(0, appWidth*-1, appHeight*-1, appHeight*1/30, appWidth*1/30, 0.5);
@@ -62,9 +63,8 @@ void setup() {
     shapes.add(rPaddle); //3
     shapes.add(lPaddle); //4
     shapes.add(myBall); //5
-    //shapes.add(rScore); //6
-    //shapes.add(lScore); //7
-    //shapes.add(fireworks); //8
+    shapes.add(rScore); //6
+    shapes.add(lScore); //7
     //shapes.add(oneP); //9
     //shapes.add(twoP); //10
   }
@@ -75,7 +75,7 @@ void draw() {
   if (correctlyOriented == false) {
     portrait();
   } else {
-    /* for (int i = 0; i < shapes.size(); i++) {
+    /* for (int i = 0; i < shapes.size(); i++) { <---------- alternate
      shapes.get(i).draw();
      }*/
 

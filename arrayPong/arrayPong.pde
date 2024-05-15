@@ -88,6 +88,17 @@ void draw() {
 
 void mousePressed () {
   if (correctlyOriented == true) {
+    if (mouseX >= shapes.get(8).x && mouseX <= (shapes.get(8).x + shapes.get(8).w) && mouseY >= shapes.get(8).y && mouseY <= (shapes.get(8).y + shapes.get(8).h)) {
+      println("newly initiated");
+      onePlayer = false;
+      twoPlayer = false;
+      
+      for (Shape s : shapes) {
+       s.reset(); 
+      }
+      
+      paused = true;
+    }
     
     if (paused == false && mouseX > shapes.get(0).x && mouseX < (shapes.get(0).x + shapes.get(0).w) && mouseY > shapes.get(0).y && mouseY < (shapes.get(0).y + shapes.get(0).h)) {
       println("ball moved");
@@ -98,17 +109,6 @@ void mousePressed () {
     if (mouseX >= shapes.get(7).x && mouseX <= (shapes.get(7).x + shapes.get(7).w) && mouseY >= shapes.get(7).y && mouseY <= (shapes.get(7).y + shapes.get(7).h)) {
       println("terminated");
       exit();
-    }
-    
-    if (mouseX >= shapes.get(8).x && mouseX <= (shapes.get(8).x + shapes.get(8).w) && mouseY >= shapes.get(8).y && mouseY <= (shapes.get(8).y + shapes.get(8).h)) {
-      println("newly initiated");
-      paused = true;
-      onePlayer = false;
-      twoPlayer = false;
-      
-      for (Shape s : shapes) {
-       s.reset(); 
-      }
     }
     
     for (Shape s : shapes) {

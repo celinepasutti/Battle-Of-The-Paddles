@@ -40,7 +40,6 @@ class Ball extends Circle {
     if (scoreCondition == true) {
       paused = true;
       //scoreCondition = true;
-      reset();
       fireworks.draw();
     }
 
@@ -161,6 +160,7 @@ class Ball extends Circle {
   }
 
   void reset() {
+    this.scoreCondition = false;
     this.x = xStart;
     this.y = yStart;
     

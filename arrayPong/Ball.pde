@@ -40,7 +40,7 @@ class Ball extends Circle {
     if (scoreCondition == true) {
       paused = true;
       //scoreCondition = true;
-      //reset();
+      reset();
       fireworks.draw();
     }
 
@@ -169,6 +169,12 @@ class Ball extends Circle {
   }
 
   void keyPressed() {
+    if (paused == true && scoreCondition == true && key == ' ') {
+      paused = false;
+      this.scoreCondition = false;
+      shapes.get(3).scoreCondition = false;
+      reset();
+    }
   }
 
   void keyReleased() {

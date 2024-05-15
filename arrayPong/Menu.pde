@@ -31,16 +31,16 @@ class Menu extends Rectangle {
       twoP.draw();
       shapes.get(1).reset();
       shapes.get(2).reset();
-
-      //rPaddle.newGame();
-      //lPaddle.newGame();
     }
   }
 
   void reset() {
+    scoreCondition = false;
+    paused = false;
   }
 
   void keyPressed() {
+    
   }
 
   void keyReleased() {
@@ -62,5 +62,4 @@ class Menu extends Rectangle {
       }
     }
   }
-  
 }

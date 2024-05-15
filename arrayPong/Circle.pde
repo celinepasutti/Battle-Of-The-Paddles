@@ -9,6 +9,7 @@ abstract class Circle extends Shape {
   
   abstract void keyPressed();
   abstract void keyReleased();
+  abstract void mousePressed();
   
   abstract void reset();
   

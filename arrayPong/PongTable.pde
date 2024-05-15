@@ -18,4 +18,7 @@ class PongTable extends Rectangle {
 
   void keyReleased() {
   }
+  
+  void mousePressed() { 
+  }
 }

@@ -13,6 +13,7 @@ abstract class Rectangle extends Shape {
   
   abstract void keyPressed();
   abstract void keyReleased();
+  abstract void mousePressed();
   
   abstract void reset();
 

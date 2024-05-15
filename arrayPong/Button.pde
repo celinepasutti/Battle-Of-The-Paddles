@@ -33,4 +33,7 @@ class Button extends Rectangle {
 
   void keyReleased() {
   }
+  
+  void mousePressed() { 
+  }
 }

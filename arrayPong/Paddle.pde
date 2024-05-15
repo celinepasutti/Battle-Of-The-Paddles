@@ -155,6 +155,9 @@ class Paddle extends Rectangle {
     this.h = hStart;
     this.speed = speedStart;
   }
+  
+  void mousePressed() { 
+  }
 }
 
 //RESP:::

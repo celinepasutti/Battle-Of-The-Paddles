@@ -93,4 +93,7 @@ class Fireworks extends Ball {
 
   void keyReleased() {
   }
+  
+  void mousePressed() { 
+  }
 }

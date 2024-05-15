@@ -32,16 +32,19 @@ class Ball extends Circle {
   }
 
   void draw() {
+    if (paused == false) {
     ball();
     move();
+    }
     //pause();
     if (scoreCondition == true) {
-      this.x = xStart;
-      this.y = yStart;
+      paused = true;
+      //scoreCondition = true;
+      //reset();
       fireworks.draw();
     }
 
-    paddleUpdate(shapes.get(3).x, shapes.get(4).x, shapes.get(3).y, shapes.get(4).y, shapes.get(3).w, shapes.get(4).w, shapes.get(3).h, shapes.get(4).h);
+    paddleUpdate(shapes.get(1).x, shapes.get(2).x, shapes.get(1).y, shapes.get(2).y, shapes.get(1).w, shapes.get(2).w, shapes.get(1).h, shapes.get(2).h);
 
     //onePlayerPaddle();
     //onlyChild();
@@ -63,8 +66,8 @@ class Ball extends Circle {
     if (this.right == false) {
       if (this.x > tablew - (w/2)) {
         netExplosion(x, y, 0.5);
-        scoreCondition = true;
-        shapes.get(6).scoreCondition = true;
+        //scoreCondition = true;
+        shapes.get(5).scoreCondition = true;
       }
       if (this.x > (paddlex - (w/2)) && this.y > paddley && this.y < (paddley + paddleh)) {
         if (this.x < paddlex + w) {
@@ -77,8 +80,8 @@ class Ball extends Circle {
     } else {
       if (this.x < tablex + (w/2)) {
         netExplosion(x, y, 0.5);
-        scoreCondition = true;
-        shapes.get(7).scoreCondition = true;
+        //scoreCondition = true;
+        shapes.get(6).scoreCondition = true;
       }
       if (this.x < (paddlex + paddlew + (w/2)) && y > paddley && y < (paddley + paddleh)) {
         if (this.x > paddlex - w) {
@@ -134,29 +137,7 @@ class Ball extends Circle {
    }
    }
    
-   void pause() {
-   if (paused == true) {
-   this.x = xStart;
-   this.y = yStart;
-   fill(black);
-   rect(0, 0, appWidth, appHeight);
-   fill(defaultCol);
-   if (scoreCondition == true) {
-   fill(white);
-   createText("Score! Press SPACE to resume.", 0, 0, appWidth, appHeight);
-   fill(defaultCol);
-   } else {
-   fill(white);
-   createText("New game! Select player number to start.", 0, 0, appWidth, appHeight);
-   fill(defaultCol);
-   oneP.draw();
-   twoP.draw();
-   
-   rPaddle.newGame();
-   lPaddle.newGame();
-   }
-   }
-   }*/
+   */
 
   void paddleUpdate(float rpaddlexParameter, float lpaddlexParameter, float rpaddleyParameter, float lpaddleyParameter, float rpaddlewParameter, float lpaddlewParameter, float rpaddlehParameter, float lpaddlehParameter) {
     if (this.right == true) {
@@ -173,20 +154,27 @@ class Ball extends Circle {
   }
 
   void netExplosion(float xParameter, float yParameter, float gravityParameter) {
+    this.scoreCondition = true;
+    shapes.get(3).scoreCondition = true;
     fireworks = new Fireworks(0, xParameter, yParameter, 0, 0, gravityParameter);
     fireworks.tableUpdate(shapes.get(0).x, shapes.get(0).y, shapes.get(0).w, shapes.get(0).h);
-
-    this.xSpeed *= xSpeedChange();
-    this.ySpeed *= ySpeedChange();
   }
 
   void reset() {
+    this.x = xStart;
+    this.y = yStart;
+    
+    this.xSpeed *= xSpeedChange();
+    this.ySpeed *= ySpeedChange();
   }
 
   void keyPressed() {
   }
 
   void keyReleased() {
+  }
+  
+  void mousePressed() { 
   }
 
   /*void endPauseKP() {

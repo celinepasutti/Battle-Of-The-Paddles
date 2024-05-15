@@ -1,4 +1,4 @@
-Boolean paused = false;
+Boolean paused = true;
 Boolean onePlayer = false;
 Boolean twoPlayer = true;
 
@@ -8,16 +8,14 @@ ArrayList<Shape> shapes = new ArrayList<Shape>();
 // ^^ SHAPES ELEMENT LIST ^^
 /*
  0 = myTable,
- 1 = quit
- 2 = restart
- 3 = rPaddle
- 4 = lPaddle
- 5 = myBall
- 6 = rScore
- 7 = lScore
- 8 = fireworks
- 9 = oneP
- 10 = twoP
+ 1 = rPaddle
+ 2 = lPaddle
+ 3 = myMenu
+ 4 = myBall
+ 5 = rScore
+ 6 = lScore
+ 7 = quit
+ 8 = restart
  */
 
 void setup() {
@@ -29,6 +27,7 @@ void setup() {
   music();
 
   if (correctlyOriented == true) {
+    
     PongTable myTable = new PongTable(gray, appWidth*0, appHeight*1/10, appWidth, appHeight*8/10);
 
     Button quit = new Button("x", int(appWidth*1/45), red, appWidth*17/20, appHeight*1/30, appWidth/10, appHeight/24);
@@ -36,7 +35,8 @@ void setup() {
 
     ScoreBoard rScore = new ScoreBoard(black, appWidth*6/20, appHeight*1/30, appWidth/10, appHeight/24);
     ScoreBoard lScore = new ScoreBoard(black, appWidth*12/20, appHeight*1/30, appWidth/10, appHeight/24);
-
+    
+    Menu myMenu = new Menu(black, 0, 0, appWidth, appHeight);
 
     Ball myBall = new Ball(white, myTable.w*1/2, (myTable.y + myTable.h*1/2), myTable.w*1/35, myTable.w*1/35);
     //yourBall = new Ball(white, myTable.w*1/2, (myTable.y + myTable.h*1/2), myTable.w*1/35, myTable.w*1/35);
@@ -58,15 +58,14 @@ void setup() {
     //Fireworks fireworks = new Fireworks(0, appWidth*-1, appHeight*-1, appHeight*1/30, appWidth*1/30, 0.5);
 
     shapes.add(myTable); //0
-    shapes.add(quit); //1
-    shapes.add(restart); //2
-    shapes.add(rPaddle); //3
-    shapes.add(lPaddle); //4
-    shapes.add(myBall); //5
-    shapes.add(rScore); //6
-    shapes.add(lScore); //7
-    //shapes.add(oneP); //9
-    //shapes.add(twoP); //10
+    shapes.add(rPaddle); //1
+    shapes.add(lPaddle); //2
+    shapes.add(myMenu); //3
+    shapes.add(myBall); //4
+    shapes.add(rScore); //5
+    shapes.add(lScore); //6
+    shapes.add(quit); //7
+    shapes.add(restart); //8
   }
 }
 
@@ -82,22 +81,38 @@ void draw() {
     for (Shape s : shapes) {
       s.draw();
     }
-
-    //shapes.get(5).paddleUpdate(shapes.get(3).x, shapes.get(4).x, shapes.get(3).y, shapes.get(4).y, shapes.get(3).w, shapes.get(4).w, shapes.get(3).h, shapes.get(4).h);
+    
+    //shapes.get(4).paddleUpdate(shapes.get(1).x, shapes.get(2).x, shapes.get(1).y, shapes.get(2).y, shapes.get(1).w, shapes.get(2).w, shapes.get(1).h, shapes.get(2).h);
   }
 }
 
 void mousePressed () {
   if (correctlyOriented == true) {
-    if (mouseX > shapes.get(0).x && mouseX < (shapes.get(0).x + shapes.get(0).w) && mouseY > shapes.get(0).y && mouseY < (shapes.get(0).y + shapes.get(0).h)) {
+    
+    if (paused == false && mouseX > shapes.get(0).x && mouseX < (shapes.get(0).x + shapes.get(0).w) && mouseY > shapes.get(0).y && mouseY < (shapes.get(0).y + shapes.get(0).h)) {
       println("ball moved");
-      shapes.get(5).x = mouseX;
-      shapes.get(5).y = mouseY;
+      shapes.get(4).x = mouseX;
+      shapes.get(4).y = mouseY;
     }
 
-    if (mouseX >= shapes.get(1).x && mouseX <= (shapes.get(1).x + shapes.get(1).w) && mouseY >= shapes.get(1).y && mouseY <= (shapes.get(1).y + shapes.get(1).h)) {
+    if (mouseX >= shapes.get(7).x && mouseX <= (shapes.get(7).x + shapes.get(7).w) && mouseY >= shapes.get(7).y && mouseY <= (shapes.get(7).y + shapes.get(7).h)) {
       println("terminated");
       exit();
+    }
+    
+    if (mouseX >= shapes.get(8).x && mouseX <= (shapes.get(8).x + shapes.get(8).w) && mouseY >= shapes.get(8).y && mouseY <= (shapes.get(8).y + shapes.get(8).h)) {
+      println("newly initiated");
+      paused = true;
+      onePlayer = false;
+      twoPlayer = false;
+      
+      for (Shape s : shapes) {
+       s.reset(); 
+      }
+    }
+    
+    for (Shape s : shapes) {
+     s.mousePressed(); 
     }
   }
 }

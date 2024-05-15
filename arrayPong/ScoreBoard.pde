@@ -38,4 +38,7 @@ class ScoreBoard extends Rectangle {
 
   void keyReleased() {
   }
+  
+  void mousePressed() { 
+  }
 }

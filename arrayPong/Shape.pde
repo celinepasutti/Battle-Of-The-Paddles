@@ -25,6 +25,7 @@ abstract class Shape {
 
   abstract void keyPressed();
   abstract void keyReleased();
+  abstract void mousePressed();
 
   abstract void reset();
 

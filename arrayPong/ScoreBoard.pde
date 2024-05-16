@@ -15,7 +15,7 @@ class ScoreBoard extends Rectangle {
   void draw() {
     rectangle();
     fill(white);
-    createText(this.text, this.x, this.y, this.w, this.h);
+    createText(this.text , this.textSize, this.x, this.y, this.w, this.h);
     fill(defaultCol);
 
 

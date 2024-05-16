@@ -23,10 +23,10 @@ abstract class Rectangle extends Shape {
     fill(defaultCol);
   }
   
-  void createText (String text, float x, float y, float w, float h) {
+  void createText (String text, int textSize, float x, float y, float w, float h) {
     fill(white);
     textAlign (CENTER, CENTER);
-    textFont(font, 40);
+    textFont(font, textSize);
     text(text, x, y, w, h);
     fill(defaultCol);
   }

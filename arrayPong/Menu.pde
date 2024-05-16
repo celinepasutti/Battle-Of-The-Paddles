@@ -19,11 +19,11 @@ class Menu extends Rectangle {
   void pause() {
     if (this.scoreCondition == true) {
       fill(white);
-      createText("Score! Press SPACE to resume.", 0, 0, appWidth, appHeight);
+      createText("Score! Press SPACE to resume.", int(appWidth*1/40), 0, 0, appWidth, appHeight);
       fill(defaultCol);
     } else {
       fill(white);
-      createText("New game! Select player number to start.", 0, 0, appWidth, appHeight);
+      createText("New game! Select player number to start.", int(appWidth*1/40), 0, 0, appWidth, appHeight);
       fill(defaultCol);
       oneP = new Button("ONE PLAYER", int(appWidth*1/40), shapes.get(0).col, appWidth*1/5, appHeight*3/5, appWidth*1/5, appHeight*1/5);
       twoP = new Button("TWO PLAYERS", int(appWidth*1/40), shapes.get(0).col, appWidth*3/5, appHeight*3/5, appWidth*1/5, appHeight*1/5);

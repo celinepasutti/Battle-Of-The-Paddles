@@ -1,17 +1,16 @@
 class Paddle extends Rectangle {
   //class vars
   Boolean up, down;
-  float speed, speedStart;
+  //float ySpeed, ySpeedStart;
   float hStart;
   float ballx, bally, ballDirection;
   float buffer;
-  //Boolean adv3 = false;
 
   Paddle(color col, float x, float y, float w, float h) {
     super(col, x, y, w, h);
     hStart = h;
-    speedStart = 9;
-    speed = speedStart;
+    ySpeedStart = 9;
+    ySpeed = ySpeedStart;
     this.up = false;
     this.down = false;
     this.buffer = (random(-200, 200));
@@ -27,6 +26,10 @@ class Paddle extends Rectangle {
         ballUpdate(shapes.get(4).x, shapes.get(4).y, shapes.get(4).xSpeed);
         rightPaddleAuto();
       }
+      if (onePlayer == false && this.right == false) {
+        ballUpdate(shapes.get(4).x, shapes.get(4).y, shapes.get(4).xSpeed);
+        leftPaddleAuto();
+      }
     }
 
     if (this.up == true) {
@@ -35,20 +38,17 @@ class Paddle extends Rectangle {
     if (this.down == true) {
       movePaddleDown();
     }
-
-
-    //decrease();
   }
 
   void movePaddleUp() {
-    y -= speed;
+    y -= ySpeed;
     if (y < tabley) { //error catch
       y = tabley;
     }
   }
 
   void movePaddleDown() {
-    y += speed;
+    y += ySpeed;
     if ((y + this.h) > (tabley + tableh)) {
       y = ((tabley + tableh) - this.h);
     }
@@ -56,10 +56,10 @@ class Paddle extends Rectangle {
 
   void ballSnipe() {
     if (this.y < (bally - this.h*1/2)) {
-      this.y += speed;
+      this.y += ySpeed;
     }
     if (this.y > (bally - this.h*1/2)) {
-      this.y -= speed;
+      this.y -= ySpeed;
     }
     if (this.y < tabley) { //error catch
       this.y = tabley;
@@ -71,10 +71,10 @@ class Paddle extends Rectangle {
 
   void closeIsh() {
     if (this.y < (bally - this.h*1/2 + this.buffer)) {
-      this.y += speed;
+      this.y += ySpeed;
     }
     if (this.y > (bally - this.h*1/2 + this.buffer)) {
-      this.y -= speed;
+      this.y -= ySpeed;
     }
     if (this.y < tabley) { //error catch
       this.y = tabley;
@@ -86,20 +86,12 @@ class Paddle extends Rectangle {
 
   void startxy() {
     if (this.y < yStart) {
-      this.y += speed;
+      this.y += ySpeed;
     }
     if (this.y > yStart) {
-      this.y -= speed;
+      this.y -= ySpeed;
     }
   }
-
-  /*void decrease() {
-   if (adv3 == true) {
-   this.h *= 0.9;
-   this.speed *= 0.75;
-   adv3 = false;
-   }
-   }*/
 
   void ballUpdate(float ballxParameter, float ballyParameter, float ballDirectionParameter) {
     ballx = ballxParameter;
@@ -162,7 +154,7 @@ class Paddle extends Rectangle {
 
   void reset() {
     this.h = hStart;
-    this.speed = speedStart;
+    this.ySpeed = ySpeedStart;
 
     if (shapes.get(4).scoreCondition == false) {
       startxy();
@@ -175,6 +167,20 @@ class Paddle extends Rectangle {
         ballSnipe();
       } else {
         if (ballDirection > 0) { // keep this line if you want the paddle to not move after x direction goes back to the other direction.
+          closeIsh();
+        }
+      }
+    } else {
+      startxy();
+    }
+  }
+
+  void leftPaddleAuto() {
+    if (shapes.get(4).right == false) {
+      if (ballx < tablew*1/4) {
+        ballSnipe();
+      } else {
+        if (ballDirection < 0) {
           closeIsh();
         }
       }

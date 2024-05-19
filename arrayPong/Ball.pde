@@ -1,6 +1,7 @@
 class Ball extends Circle {
   //class vars
   float paddlex, paddley, paddlew, paddleh;
+  float xSpeedChange, ySpeedChange;
   Boolean right = false;
   Boolean scoreCondition = false;
   Fireworks fireworks;
@@ -33,13 +34,12 @@ class Ball extends Circle {
   void draw() {
     println("right", this.right);
     if (paused == false) {
-    ball();
-    move();
+      ball();
+      move();
     }
     //pause();
     if (scoreCondition == true) {
       paused = true;
-      //scoreCondition = true;
       fireworks.draw();
     }
 
@@ -63,8 +63,12 @@ class Ball extends Circle {
     if (this.right == false) {
       if (this.x > tablew - (w/2)) {
         netExplosion(x, y, 0.5);
-        //scoreCondition = true;
         shapes.get(5).scoreCondition = true;
+
+        if ((shapes.get(5).score - shapes.get(6).score) % 3 == 0) {
+          shapes.get(1).h *= 0.9;
+          shapes.get(1).ySpeed *= 0.75;
+        }
       }
       if (this.x > (paddlex - (w/2)) && this.y > paddley && this.y < (paddley + paddleh)) {
         if (this.x < paddlex + w) {
@@ -77,8 +81,11 @@ class Ball extends Circle {
     } else {
       if (this.x < tablex + (w/2)) {
         netExplosion(x, y, 0.5);
-        //scoreCondition = true;
         shapes.get(6).scoreCondition = true;
+        if ((shapes.get(6).score - shapes.get(5).score) % 3 == 0) {
+          shapes.get(2).h *= 0.9;
+          shapes.get(2).ySpeed *= 0.75;
+        }
       }
       if (this.x < (paddlex + paddlew + (w/2)) && y > paddley && y < (paddley + paddleh)) {
         if (this.x > paddlex - w) {
@@ -119,24 +126,28 @@ class Ball extends Circle {
     this.scoreCondition = false;
     this.x = xStart;
     this.y = yStart;
-    
+
     this.xSpeed *= xSpeedChange();
     this.ySpeed *= ySpeedChange();
   }
 
   void keyPressed() {
-    if (paused == true && scoreCondition == true && key == ' ') {
-      paused = false;
-      this.scoreCondition = false;
-      shapes.get(3).scoreCondition = false;
-      reset();
+    if (paused == true && key == ' ') {
+      if (this.scoreCondition == true) {
+        paused = false;
+        this.scoreCondition = false;
+        shapes.get(3).scoreCondition = false;
+        reset();
+      } else {
+        paused = false;
+      }
     }
   }
 
   void keyReleased() {
   }
-  
-  void mousePressed() { 
+
+  void mousePressed() {
   }
 
   /*void endPauseKP() {

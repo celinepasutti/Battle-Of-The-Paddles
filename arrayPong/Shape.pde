@@ -1,10 +1,8 @@
 abstract class Shape {
   //class vars
-  float x, y, w, h;
-  float tablex, tabley, tablew, tableh;
-  float xSpeed, ySpeed, xSpeedChange, ySpeedChange;
+  float x, y, w, h, xStart, yStart, xSpeed, ySpeed, xSpeedStart, ySpeedStart, tablex, tabley, tablew, tableh;
+  int score;
   color col, defaultCol;
-  float xStart, yStart;
   Boolean scoreCondition = false;
   Boolean right = false;
 
@@ -14,12 +12,10 @@ abstract class Shape {
     this.y = y;
     this.w = w;
     this.h = h;
-    defaultCol = 0; //nightModeCol();
+    defaultCol = 0;
     this.xStart = x;
     this.yStart = y;
   }
-
-
 
   //methods
   abstract void draw();
@@ -44,9 +40,6 @@ abstract class Shape {
       this.right = true;
     }
   }
+  
+  
 }
-
-/* color nightModeCol() { ---------- potential nightMode...
- color nm = 0;
- return nm;
- }*/

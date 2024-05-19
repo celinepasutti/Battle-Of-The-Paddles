@@ -1,6 +1,5 @@
 class ScoreBoard extends Rectangle {
   //class vars
-  int score;
   int textSize;
 
   ScoreBoard(color col, float x, float y, float w, float h) {
@@ -17,7 +16,6 @@ class ScoreBoard extends Rectangle {
     fill(white);
     createText(this.text , this.textSize, this.x, this.y, this.w, this.h);
     fill(defaultCol);
-
 
 
     if (this.scoreCondition == true) {

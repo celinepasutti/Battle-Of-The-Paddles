@@ -1,6 +1,6 @@
 Boolean paused = true;
 Boolean onePlayer = false;
-Boolean twoPlayer = true;
+Boolean twoPlayer = false;
 
 color black=#000000, white=#FFFFFF, red=#951111, Lgreen=#27C149, gray=#898989;
 ArrayList<Shape> shapes = new ArrayList<Shape>();
@@ -39,23 +39,16 @@ void setup() {
     Menu myMenu = new Menu(black, 0, 0, appWidth, appHeight);
 
     Ball myBall = new Ball(white, myTable.w*1/2, (myTable.y + myTable.h*1/2), myTable.w*1/35, myTable.w*1/35);
-    //yourBall = new Ball(white, myTable.w*1/2, (myTable.y + myTable.h*1/2), myTable.w*1/35, myTable.w*1/35);
     myBall.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
 
     Paddle rPaddle = new Paddle(white, myTable.w*1/30, (myTable.y + (myTable.h*1/3)), myBall.w*1/2, myTable.h*1/4);
     Paddle lPaddle = new Paddle(white, (myTable.w*29/30 - myBall.w*1/2), (myTable.y + (myTable.h*1/3)), myBall.w*1/2, myTable.h*1/4);
-
-
-    //yourBall.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
 
     rPaddle.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
     lPaddle.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
     
     rScore.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
     lScore.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
-
-
-    //Fireworks fireworks = new Fireworks(0, appWidth*-1, appHeight*-1, appHeight*1/30, appWidth*1/30, 0.5);
 
     shapes.add(myTable); //0
     shapes.add(rPaddle); //1
@@ -74,15 +67,11 @@ void draw() {
   if (correctlyOriented == false) {
     portrait();
   } else {
-    /* for (int i = 0; i < shapes.size(); i++) { <---------- alternate
-     shapes.get(i).draw();
-     }*/
 
     for (Shape s : shapes) {
       s.draw();
     }
     
-    //shapes.get(4).paddleUpdate(shapes.get(1).x, shapes.get(2).x, shapes.get(1).y, shapes.get(2).y, shapes.get(1).w, shapes.get(2).w, shapes.get(1).h, shapes.get(2).h);
   }
 }
 

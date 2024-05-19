@@ -1,6 +1,5 @@
 class Ball extends Circle {
   //class vars
-  float xSpeed, ySpeed, xSpeedChange, ySpeedChange;
   float paddlex, paddley, paddlew, paddleh;
   Boolean right = false;
   Boolean scoreCondition = false;
@@ -32,6 +31,7 @@ class Ball extends Circle {
   }
 
   void draw() {
+    println("right", this.right);
     if (paused == false) {
     ball();
     move();
@@ -44,9 +44,7 @@ class Ball extends Circle {
     }
 
     paddleUpdate(shapes.get(1).x, shapes.get(2).x, shapes.get(1).y, shapes.get(2).y, shapes.get(1).w, shapes.get(2).w, shapes.get(1).h, shapes.get(2).h);
-
-    //onePlayerPaddle();
-    //onlyChild();
+    sideCheck();
   }
 
   void move() {
@@ -95,48 +93,6 @@ class Ball extends Circle {
       this.ySpeed *= -1;
     }
   }
-
-  /*void onePlayerPaddle () {
-   if (onePlayer == true) {
-   if (this.right == false) {
-   if (this.x > tablew*3/4) {
-   lPaddle.ballSnipe();
-   } else {
-   if (this.xSpeed > 0) { // keep this line if you want the paddle to not move after x direction goes back to the other direction.
-   lPaddle.closeIsh();
-   }
-   }
-   } else {
-   lPaddle.newGame();
-   }
-   }
-   }
-   
-   void onlyChild() {
-   if (onePlayer == false && twoPlayer == false) {
-   if (this.right == false) {
-   rPaddle.newGame();
-   if (this.x > tablew*3/4) {
-   lPaddle.ballSnipe();
-   } else {
-   if (this.xSpeed > 0) {
-   lPaddle.closeIsh();
-   }
-   }
-   } else {
-   lPaddle.newGame();
-   if (this.x < tablew*1/4) {
-   rPaddle.ballSnipe();
-   } else {
-   if (this.xSpeed < 0) {
-   rPaddle.closeIsh();
-   }
-   }
-   }
-   }
-   }
-   
-   */
 
   void paddleUpdate(float rpaddlexParameter, float lpaddlexParameter, float rpaddleyParameter, float lpaddleyParameter, float rpaddlewParameter, float lpaddlewParameter, float rpaddlehParameter, float lpaddlehParameter) {
     if (this.right == true) {

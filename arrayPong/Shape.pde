@@ -2,6 +2,7 @@ abstract class Shape {
   //class vars
   float x, y, w, h;
   float tablex, tabley, tablew, tableh;
+  float xSpeed, ySpeed, xSpeedChange, ySpeedChange;
   color col, defaultCol;
   float xStart, yStart;
   Boolean scoreCondition = false;
@@ -37,10 +38,10 @@ abstract class Shape {
   }
 
   void sideCheck() {
-    if (this.x > (tablew*1/2)) {
-      this.right = true;
-    } else {
+    if (this.x < (tablew*1/2)) {
       this.right = false;
+    } else {
+      this.right = true;
     }
   }
 }

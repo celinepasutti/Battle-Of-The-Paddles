@@ -32,7 +32,7 @@ class Ball extends Circle {
   }
 
   void draw() {
-    println("right", this.right);
+    //println("right", this.right);
     if (paused == false) {
       ball();
       move();

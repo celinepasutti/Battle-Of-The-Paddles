@@ -1,7 +1,6 @@
 class Paddle extends Rectangle {
   //class vars
   Boolean up, down;
-  //float ySpeed, ySpeedStart;
   float hStart;
   float ballx, bally, ballDirection;
   float buffer;

@@ -2,12 +2,13 @@ abstract class Shape {
   //class vars
   float x, y, w, h, xStart, yStart, xSpeed, ySpeed, xSpeedStart, ySpeedStart, tablex, tabley, tablew, tableh;
   int score;
-  color col, defaultCol;
+  color col, defaultCol, colStart;
   Boolean scoreCondition = false;
   Boolean right = false;
 
   Shape(color col, float x, float y, float w, float h) {
     this.col = col;
+    this.colStart = col;
     this.x = x;
     this.y = y;
     this.w = w;

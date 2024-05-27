@@ -27,7 +27,7 @@ void setup() {
   music();
 
   if (correctlyOriented == true) {
-    
+
     PongTable myTable = new PongTable(gray, appWidth*0, appHeight*1/10, appWidth, appHeight*8/10);
 
     Button quit = new Button("x", int(appWidth*1/45), red, appWidth*17/20, appHeight*1/30, appWidth/10, appHeight/24);
@@ -35,7 +35,7 @@ void setup() {
 
     ScoreBoard rScore = new ScoreBoard(black, appWidth*6/20, appHeight*1/30, appWidth/10, appHeight/24);
     ScoreBoard lScore = new ScoreBoard(black, appWidth*12/20, appHeight*1/30, appWidth/10, appHeight/24);
-    
+
     Menu myMenu = new Menu(black, 0, 0, appWidth, appHeight);
 
     Ball myBall = new Ball(white, myTable.w*1/2, (myTable.y + myTable.h*1/2), myTable.w*1/35, myTable.w*1/35);
@@ -46,7 +46,7 @@ void setup() {
 
     rPaddle.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
     lPaddle.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
-    
+
     rScore.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
     lScore.tableUpdate(myTable.x, myTable.y, myTable.w, myTable.h);
 
@@ -67,11 +67,10 @@ void draw() {
   if (correctlyOriented == false) {
     portrait();
   } else {
-
     for (Shape s : shapes) {
       s.draw();
     }
-    
+    partyMode();
   }
 }
 
@@ -81,14 +80,14 @@ void mousePressed () {
       println("newly initiated");
       onePlayer = false;
       twoPlayer = false;
-      
+
       for (Shape s : shapes) {
-       s.reset(); 
+        s.reset();
       }
-      
+
       paused = true;
     }
-    
+
     if (paused == false && mouseX > shapes.get(0).x && mouseX < (shapes.get(0).x + shapes.get(0).w) && mouseY > shapes.get(0).y && mouseY < (shapes.get(0).y + shapes.get(0).h)) {
       println("ball moved");
       shapes.get(4).x = mouseX;
@@ -99,9 +98,9 @@ void mousePressed () {
       println("terminated");
       exit();
     }
-    
+
     for (Shape s : shapes) {
-     s.mousePressed(); 
+      s.mousePressed();
     }
   }
 }
@@ -121,6 +120,21 @@ void keyPressed() {
   }
 
   if (correctlyOriented == true) {
+    if (key == 'P' || key == 'p') {
+      if (partyMode == false) {
+        partyON();
+        partyMode = true;
+        for (Shape s : shapes) {
+          s.col = color (random(255), random(255), random(255));
+        }
+      } else {
+       partyMode = false;
+       for (Shape s : shapes) {
+          s.col = s.colStart;
+        }
+      }
+    }
+    
     for (Shape s : shapes) {
       s.keyPressed();
     }

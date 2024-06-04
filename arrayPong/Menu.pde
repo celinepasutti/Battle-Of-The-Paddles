@@ -1,6 +1,8 @@
 class Menu extends Rectangle {
   Button oneP;
   Button twoP;
+  Boolean newConfetti = false;
+  Confettis confetti;
 
   Menu (color col, float x, float y, float w, float h) {
     super(col, x, y, w, h);
@@ -8,8 +10,9 @@ class Menu extends Rectangle {
   }
 
   void draw() {
-    
-
+    if (partyMode == true) {
+     confetti.draw(); 
+    }
     if (paused == true) {
       rectangle();
       pause();
@@ -40,7 +43,9 @@ class Menu extends Rectangle {
   }
 
   void keyPressed() {
-    
+    if (partyMode == false && key == 'P' || key == 'p') {
+      confetti = new Confettis(col, x, y, w, w);
+    }
   }
 
   void keyReleased() {

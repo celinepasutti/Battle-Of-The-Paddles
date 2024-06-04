@@ -1,6 +1,6 @@
 Boolean partyMode = false;
 int current, objective;
-
+ //find fireworks falling in MENU
 
 void partyMode() {
   current = second();

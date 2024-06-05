@@ -122,19 +122,21 @@ void keyPressed() {
   if (correctlyOriented == true) {
     if (key == 'P' || key == 'p') {
       if (partyMode == false) {
-        partyON();
+        println("partyMode ON");
+          partyON();
         partyMode = true;
         for (Shape s : shapes) {
           s.col = color (random(255), random(255), random(255));
         }
       } else {
-       partyMode = false;
-       for (Shape s : shapes) {
+        println("partyMode OFF");
+        partyMode = false;
+        for (Shape s : shapes) {
           s.col = s.colStart;
         }
       }
     }
-    
+
     for (Shape s : shapes) {
       s.keyPressed();
     }

@@ -1,4 +1,4 @@
-# Battle of the Paddles (<< place holder)
+# Battle of the Paddles
 A game inspired by ATARI's classic "Pong" utilizing an array list of abstract classes and encapsulated object creation.
 > NOTE: This program will not function unless the display is in a LANDSCAPE orientation, and is programmed to block PORTRAIT play automatically.
 
